@@ -37,7 +37,7 @@ def dual_sensor_cross_corr_exam():
     # show_spectogram(filtered_values[0], data_index="spect_filtered_sig", show=True)
     # --- calc cross-correlation ---
     calc_cross_corr(filtered_values[0], filtered_values[1], show=False, save_addr='output/time_cross_corr.png',
-                    scot=True)
+                    scot=False)  # , time_scale=False, test_ccor=True)
 
 
 def single_sensor_freq_spect_exam():
@@ -46,15 +46,16 @@ def single_sensor_freq_spect_exam():
     data0 = read_data(rootfolder)
     values0 = preprocess(data0)
     # --------- show spectogram ------------
-    # for i in range(len(values0)):
-    #     show_spectogram(values0[i], data_index=i)
+    for i in range(len(values0)):
+        show_spectogram(values0[i], data_index=i, log=True, xlim=[0, 500])
     # --------- show freq cross-spectogram ------
     values0.pop(5)  # pop not needed data
+    values0.pop(15)  # pop not needed data
     # show_cross_spect_freq(values0, log=False)
     show_cross_spect_freq(values0, log=True, xlim=[0, 500])
 
 
-def read_data(root_folder, root_folder2=None, only_index=None):
+def read_data(root_folder, root_folder2=None, only_index=None, num_data=24):
     """ read all data """
     print("reading data ...")
     data0 = []
@@ -63,7 +64,7 @@ def read_data(root_folder, root_folder2=None, only_index=None):
             print("\tDone!")
             return data0
     else:
-            for i in range(12):
+            for i in range(num_data):
                 data0.append(pd.read_csv(root_folder + "analog{:02d}.csv".format(i), skiprows=[0, 1]))
             print("\tDone!")
             return data0
@@ -108,8 +109,8 @@ def show_spectogram(values0, data_index="0", show=False, log=None, xlim=None, Fs
     plt.title("spectogram of data_{}".format(data_index)); plt.ylabel('Frequency [Hz]'); plt.xlabel('Time [sec]')
 
     # --- remove freq < 25 ---
-    freq0 = freq0[4:]
-    spectrum0 = spectrum0[4:, :]
+    freq0 = freq0[2:]
+    spectrum0 = spectrum0[2:, :]
 
     # --- show some part of spectogram ---
     num_small_fft = 4
@@ -161,15 +162,16 @@ def filter_sig(value0, Fs=6400):
     return filter.bandpass(data=value0, freqmin=50, freqmax=170, df=Fs, corners=4)    # Butterworth bandpass filter
 
 
-def calc_cross_corr(value0, value1, Fs=1600, show=False, save_addr='output/a.png', scot=False):
-    # ---- calc cross correlation
+def calc_cross_corr(value0, value1, Fs=1600, show=False, save_addr='output/a.png', scot=False, time_scale=True,
+                    test_ccor=False):
+    """ Function to plot ccor in time and calc peak point of it """
+    if test_ccor:
+        value0 = np.roll(value0, 100)  # just to test the scot
+
     if scot:
         sqrt_abs_Sxx = np.sqrt(np.abs(np.fft.fft(scisig.correlate(value0, value0))))
-        print(sqrt_abs_Sxx.shape)
         sqrt_abs_Syy = np.sqrt(np.abs(np.fft.fft(scisig.correlate(value1, value1))))
-        print(sqrt_abs_Syy.shape)
         Sxy = np.fft.fft(scisig.correlate(value0, value1))
-        print(Sxy.shape)
         value0 = Sxy / sqrt_abs_Syy / sqrt_abs_Sxx
         value0 = np.fft.ifft(value0)
         value0 = value0 / np.max(np.abs(value0))
@@ -178,9 +180,15 @@ def calc_cross_corr(value0, value1, Fs=1600, show=False, save_addr='output/a.png
         value0 = value0 / np.max(np.abs(value0))
     # ---- plot cross-correlation
     plt.figure(4)
-    a = len(value0) / 2 / Fs
+    if time_scale:
+        a = len(value0) / 2 / Fs
+        plt.xlabel("time [sec]")
+    else:
+        a = len(value0) / 2         # to have sample output
+        plt.xlabel("time [sample]")
     plt.plot(np.linspace(-a, a, len(value0)), value0)
-    plt.xlabel("time [sec]"); plt.ylabel("normalized power")
+    plt.ylabel("normalized power")
+
     if show:
         plt.show()
     else:
@@ -192,7 +200,9 @@ def calc_cross_corr(value0, value1, Fs=1600, show=False, save_addr='output/a.png
     mid = (len(value0) - 1) // 2
     shift = np.argmax(np.abs(value0[mid - Fs: mid + Fs])) - Fs      # only search for max in 1 Sec distance
     value = np.abs(value0[shift])
-    print("shift amount = {} Sec, with confedence = {:3f}%".format(shift / Fs, value * 100))
+    if time_scale:
+        shift = shift / Fs
+    print("shift amount = {} Sec, with confedence = {:3f}%".format(shift, value * 100))
 
 
 if __name__ == "__main__":
