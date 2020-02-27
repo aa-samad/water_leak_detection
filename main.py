@@ -2,7 +2,8 @@
                     Leak Detection project
                 Coded by Samadzadeh & Nourian
     =======================================================
-    compatible with python > 3.5                            """
+    compatible with python > 3.5                            
+    prerequisites: Numpy, matplotlib, pandas, scipy, obspy"""
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
