@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Water Leak Detection Dashboard</title>
+  <link rel="icon" href="static/img/icon3.png" type="image/icon" sizes="16x16">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="static/fontawesome/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="static/css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="static/css/mdb.css">
+
+  <!-- Your custom styles (optional) -->
+  <style>
+
+  </style>
+</head>
+
+<body class=""> <!--background: linear-gradient(rgb(117, 224, 230) 0%, rgb(57, 19, 184) 100%); -->
+
+<!--Main Navigation-->
+<header>
+
+  <!-- Navbar -->
+  <nav class="navbar fixed-top scrolling-navbar grey-skin">
+    <p style=" font-size: larger;"> Water Leak Detection Dash</p>
+
+    <!--Navbar links-->
+    <ul class="nav navbar-nav ml-auto">
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle waves-effect black-text" href="#" id="userDropdown" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i> <span class="clearfix d-none d-sm-inline-block">Admin &nbsp;</span></a>
+        </a>
+        <div class="blur-special2 dropdown-menu dropdown-menu-right dropdown-ins black-text" aria-labelledby="userDropdown">
+          {#          <a class="dropdown-item" onclick="show('#change_pass')"><i class="fas fa-key"></i>&nbsp;Change Password</a>#}
+          <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out-alt"></i>&nbsp;Log Out</a>
+        </div>
+      </li>
+
+    </ul>
+    <!--/Navbar links-->
+  </nav>
+  <!-- /.Navbar -->
+
+</header>
+<!--Main Navigation-->
+
+<!-- Main layout -->
+<main style="margin:0; padding-top:48pt;">
+
+  <div class="container" id="home" style="margin:0; max-width: 100%">
+
+    <div class="row">
+      <!-- main Icon wrapper -->
+      <div class="col-sm col-md-2 text-left" style="padding:0;">
+        <div class="card car-cascade text-center" style="background-color: rgba(0, 0, 0, 0); box-shadow: none;">
+          <div class="card-body text-center" style="padding:0.2rem; background-color: rgba(0, 0, 0, 0);">
+            <img class="" src="static/img/icon3.png" width="75%" style="background-color: rgba(0, 0, 0, 0);"/>
+          </div>
+        </div>
+        <!-- Accordion wrapper -->
+        <div class="accordion md-accordion" id="accordionEx1" role="tablist" aria-multiselectable="true">
+          <!-- Accordion card -->
+          <div class="card" >
+
+            <!-- Card header -->
+            <!-- add class collapsed to a tag below -->
+            <a class="card-header waves-effect waves-dark grey-special lighten-2 collapsed" role="tab" id="headingTwo1" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseTwo1"
+               aria-expanded="false" aria-controls="collapseTwo1">
+              <p class="mb-0 dark-grey-text">
+                Material <i class="fas fa-angle-down rotate-icon"></i>
+              </p>
+            </a>
+
+            <!-- Card body -->
+            <div id="collapseTwo1" class="collapse blur-special lighten-2" role="tabpanel" aria-labelledby="headingTwo1"
+                 data-parent="#accordionEx1">
+              <div class="card-body">
+                <fieldset class="form-check mb-1">
+                  <input class="form-check-input text-grey group1" name="group1" type="radio" id="material1">
+                  <label class="form-check-label text-grey group1" for="material1">Steel</label>
+                </fieldset>
+                <fieldset class="form-check mb-1">
+                  <input class="form-check-input text-grey group1" name="group1" type="radio" id="material2">
+                  <label class="form-check-label text-grey group1" for="material2">Lead</label>
+                </fieldset>
+                <fieldset class="form-check mb-1">
+                  <input class="form-check-input text-grey group1" name="group1" type="radio" id="material3">
+                  <label class="form-check-label text-grey group1" for="material3">Cast Iron</label>
+                </fieldset>
+                <fieldset class="form-check mb-1">
+                  <input class="form-check-input text-grey group1" name="group1" type="radio" id="material4" checked>
+                  <label class="form-check-label text-grey group1" for="material4">Iron</label>
+                </fieldset>
+                <fieldset class="form-check mb-1">
+                  <input class="form-check-input text-grey group1" name="group1" type="radio" id="material5">
+                  <label class="form-check-label text-grey group1" for="material5">PVC</label>
+                </fieldset>
+                <fieldset class="form-check mb-1">
+                  <input class="form-check-input text-grey group1" name="group1" type="radio" id="material6">
+                  <label class="form-check-label text-grey group1" for="material6">Uknown</label>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+          <!-- Accordion card -->
+
+          <!-- Accordion card -->
+          <div class="card">
+            <!-- Card header -->
+            <a class="card-header waves-effect waves-dark grey-special collapsed" role="tab" id="headingTwo2" data-toggle="collapse" data-parent="#accordionEx1" href="#collapseTwo21"
+               aria-expanded="false" aria-controls="collapseTwo21">
+              <p class="mb-0  dark-grey-text">
+                Diameter <i class="fas fa-angle-down rotate-icon"></i>
+              </p>
+            </a>
+            <!-- Card body -->
+            <div id="collapseTwo21" class="collapse blur-special" role="tabpanel" aria-labelledby="headingTwo21"
+                 data-parent="#accordionEx1">
+              <div class="card-body text-black">
+                <div class="md-form" style="margin: 0;">
+                  <input type="number" id="diameter" class="form-control">
+                  <label for="diameter" class="diameter active">(mm)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Accordion card -->
+
+          <!-- Accordion card -->
+          <div class="card">
+            <!-- Card header -->
+            <a class="collapsed card-header waves-effect waves-dark grey-special" role="tab" id="headingThree31" data-toggle="collapse" data-parent="#accordionEx1" href="#collapse41"
+               aria-expanded="false" aria-controls="collapseThree31">
+              <p class="mb-0 dark-grey-text">
+                Sound velocity <i class="fas fa-angle-down rotate-icon"></i>
+              </p>
+            </a>
+
+            <!-- Card body -->
+            <div id="collapse41" class="collapse blur-special" role="tabpanel" aria-labelledby="headingThree31"
+                 data-parent="#accordionEx1">
+              <div class="card-body text-black">
+                <fieldset class="form-check mb-1">
+                  <input class="form-check-input text-grey" name="group2" type="radio" id="vel1" checked="checked">
+                  <label class="form-check-label text-grey" for="vel1">Auto</label>
+                </fieldset>
+                <fieldset class="form-check mb-1">
+                  <input class="form-check-input text-grey" name="group2" type="radio" id="vel2">
+                  <label class="form-check-label text-grey" for="vel2">Manual</label>
+                  <div class="md-form" style="margin-top: 5pt; margin-left: 25pt;">
+                    <input type="number" id="vel_num" class="form-control">
+                    <label for="vel_num" class="vel_num active">(m/s)</label>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+
+          </div>
+          <!-- Accordion card -->
+
+          <!-- Accordion card -->
+          <div class="card">
+
+            <!-- Card header -->
+            <a class="collapsed card-header waves-effect waves-dark grey-special" role="tab" id="headingThree31" data-toggle="collapse" data-parent="#accordionEx1" href="#collapse51"
+               aria-expanded="false" aria-controls="collapseThree31">
+              <p class="mb-0 dark-grey-text">
+                Length <i class="fas fa-angle-down rotate-icon"></i>
+              </p>
+            </a>
+
+            <!-- Card body -->
+            <div id="collapse51" class="collapse blur-special" role="tabpanel" aria-labelledby="headingThree31"
+                 data-parent="#accordionEx1">
+              <div class="card-body text-black">
+                <div class="md-form" style="margin: 0;">
+                  <input type="number" id="len" class="form-control">
+                  <label for="len" class="active">(cm)</label>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- Accordion card -->
+        </div>
+        <!-- Accordion wrapper -->
+
+      </div>
+      <div class="col-sm col-md-10">
+        <div class="row">
+          <div class="col-sm col-md-1" style="max-width:2%;">
+          </div>
+          <div class="col-sm col-md-9 stopped" style="margin-top:3%;">
+            <button class="switch btn btn-outline-blue btn-rounded black-text" style="margin-left:0; margin-right:0; padding: 5px 0 5px 0;" onclick="command('switch')">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch Freq / Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </button>
+            <img id="corr_pic" class="btn-rounded stopped" src="static/img/corr.png" width="100%" style="background-color: rgba(0, 0, 0, 0); border: 2pt solid #dddddd;"/>
+          </div>
+          <div class="col-sm col-md-1" style="text-align: center; margin-top:3%;">
+            <button class="btn btn-outline-default btn-rounded black-text" style="margin-left:0; margin-right:0;" onclick="command('corr')">
+              Correlate
+            </button>
+            <button class="btn btn-outline-red btn-rounded black-text" style="margin-left:0; margin-right:0;" onclick="command('stop')">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </button>
+            <button class="btn btn-outline-grey btn-rounded black-text waves-dark" style="margin-left:0; margin-right:0;" onclick="command('reset')">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reset&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </button>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 3%;">
+          <div class="col-sm col-md-1">
+          </div>
+          <div class="col-sm col-md-8">
+            <table class="table">
+              <tbody>
+              <tr>
+                <td class="border-top-0" style="padding-bottom:0;"><h5>Report</h5></td>
+                <td class="border-top-0" style="padding-bottom:0;" id="lk"></td> <!--AA555A0000000101-->
+              </tr>
+              <tr>
+                <td class="">Leak:</td>
+                <b><td class="green-text" id="leak_exist">NO</td></b><!--AA555A0000000101-->
+              </tr>
+              <tr>
+                <td class="border-top-0" style="padding-top:0;">Lead Distance for sensor1:</td>
+                <td class="border-top-0" style="padding-top:0;"><b id="sen1_dist">0</b> (m)</td>
+              </tr>
+              <tr>
+                <td class="border-top-0" style="padding-top:0;">Lead Distance for sensor2:</td>
+                <td class="border-top-0" style="padding-top:0;"><b id="sen2_dist">0</b> (m)</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-sm col-md-3">
+          </div>
+        </div>
+      </div>
+    </div>
+
+</main>
+<!-- Main layout -->
+
+<!-- Footer -->
+<footer class="page-footer pt-0 mt-5">
+
+  <!-- Copyright -->
+  <div class="footer-copyright py-1 text-right">
+    <p style="display: inline">
+      Device Status:
+    </p>
+    <p style="display: inline" id="overall_status">
+      Sampling / Correlation
+    </p>
+  </div>
+  <div>
+
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+
+
+<!-- SCRIPTS -->
+<!-- JQuery -->
+<script src="static/js/jquery-3.4.1.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="static/js/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="static/js/mdb.min.js"></script>
+<!-- custom main.js -->
+<script type="text/javascript" src="static/js/main.js"></script>
+<!-- Initializations -->
+<script>
+    // SideNav Initialization
+    $(".button-collapse").sideNav();
+
+    // Material Select Initialization
+    $(document).ready(function () {
+        $('.mdb-select').material_select();
+    });
+</script>
+<!-- dark theme activation -->
+<script>
+    $( document ).ready(function() {
+    });
+
+    $('.wow.fadeIn.hidden').toggleClass('hidden');
+    new WOW().init();
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" href="static/img/favicon.ico" type="image/icon" sizes="16x16">
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <!-- Site Properties -->
+  <title>Leak Detection Dashboard Login</title>
+  <link rel="stylesheet" type="text/css" href="static/css/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="static/css/icon.min.css">
+
+  <script src="static/js/jquery.min.js"></script>
+  <script src="static/js/semantic.min.js"></script>
+
+  <style type="text/css">
+    body {
+      background-color: #DADADA;
+      background-image: radial-gradient(circle, #DADADA, #BABABA);
+    }
+    body > .grid {
+      height: 100%;
+    }
+    .image {
+      margin-top: -100px;
+    }
+    .column {
+      max-width: 450px;
+    }
+  </style>
+  <script>
+  $(document)
+    .ready(function() {
+      $('.ui.form')
+        .form({
+          fields: {
+            password: {
+              identifier  : 'password',
+              rules: [
+                {
+                  type   : 'empty',
+                  prompt : 'Please enter your password'
+                }
+              ]
+            }
+          }
+        })
+      ;
+    })
+  ;
+  </script>
+</head>
+<body>
+
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <img class="ui centered small rounded image" src="static/img/favicon-512x512.png">
+    <h2 class="ui header">
+      <div class="content">
+        Log-in Water Leak Detector Dashboard
+      </div>
+    </h2>
+    <form class="ui large form" method="post" action="/login">
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" placeholder="Password">
+          </div>
+        </div>
+        <div class="ui fluid large teal submit button">Login</div>
+      </div>
+      <div class="ui error message"></div>
+    </form>
+
+    <div class="ui message">
+      New to this page? <br/>Use password: admin
+    </div>
+  </div>
+</div>
+</body>
+</html>

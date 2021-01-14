@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Atrovan-LORA Gateway Dashboard</title>
+  <link rel="icon" href="static/img/A-logo-color2.png" type="image/icon" sizes="16x16">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="static/fontawesome/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="static/css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="static/css/mdb.css">
+  <!-- Your custom styles (optional) -->
+  <style>
+
+  </style>
+</head>
+
+<body class="fixed-sn navy-blue-skin dark-bg-admin">
+
+   <!--Main Navigation-->
+   <header>
+
+    <!-- Sidebar navigation -->
+    <div id="slide-out" class="side-nav sn-bg-1 fixed">
+      <ul class="custom-scrollbar">
+        <!-- Logo -->
+        <li class="logo-sn waves-effect waves-light py-3">
+          <div class="text-center">
+            <a href="#" class="pl-0"><img height="70" src="static/img/ATROVAN-color1.svg"></a>
+          </div>
+        </li>
+        <!--/. Logo -->
+      </ul>
+      <div class="sidenav-bg mask-strong"></div>
+    </div>
+    <!--/. Sidebar navigation -->
+
+    <!-- Navbar -->
+    <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar double-nav navy-blue-skin">
+      <!-- SideNav slide-out button -->
+      <div class="float-left">
+        <a href="#" data-activates="slide-out" class="button-collapse black-text"><i class="fas fa-bars"></i></a>
+      </div>
+      <!-- Breadcrumb-->
+      <div class="breadcrumb-dn mr-auto">
+        <p>LORA Gateway Dashboard</p>
+      </div>
+
+      <!--Navbar links-->
+      <ul class="nav navbar-nav nav-flex-icons ml-auto">
+
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle waves-effect" href="#" id="userDropdown" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user"></i> <span class="clearfix d-none d-sm-inline-block">Technician &nbsp;</span></a>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-ins" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out-alt"></i>&nbsp;Log Out</a>
+          </div>
+        </li>
+
+      </ul>
+      <!--/Navbar links-->
+    </nav>
+    <!-- /.Navbar -->
+
+  </header>
+  <!--Main Navigation-->
+
+  <!-- Main layout -->
+  <main>
+    <div class="container-fluid" id="commands">
+      <!--Grid row -->
+      <div class="row">
+
+
+        <!-- Grid column -->
+        <div class="col-lg-6 col-md-12 mb-0">
+          <!--Card -->
+          <div class="card dark-card-admin card-cascade narrower">
+              <!-- Card image -->
+              <div class="view view-cascade gradient-card-header peach-gradient">
+                <h5 class="mb-0 black-text">GENERAL BOARD CONFIG</h5>
+              </div>
+            <!--Card content -->
+            <div class="card-body card-body-cascade">
+
+              <!-- Subscription form -->
+                <table class="table">
+                  <tbody>
+                  <tr>
+                    <td class="border-top-0">SSH</td>
+                  </tr>
+                  <tr>
+                    <td class="border-top-0 text-center">
+                      <button class="btn blue-gradient black-text" onclick="commands('ssh_activate')">Activate</button>
+                      <button class="btn purple-gradient black-text" onclick="commands('ssh_deactivate')">Deactivate</button>
+                      <button class="btn dusty-grass-gradient black-text" onclick="status('ssh_isactive')">Status</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Serial</td>
+                  </tr>
+                  <tr>
+                    <td class="border-top-0 text-center">
+                      <button class="btn blue-gradient black-text" onclick="commands('serial_activate')">Activate</button>
+                      <button class="btn purple-gradient black-text" onclick="commands('serial_deactivate')">Deactivate</button>
+                      <button class="btn dusty-grass-gradient black-text" onclick="status('serial_isactive')">Status</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Ports</td>
+                  </tr>
+                  <tr>
+                    <td class="border-top-0 text-center">
+                      <div class="md-form">
+                        <input placeholder="22" type="number" id="ssh_port" class="form-control" >
+                        <label for="form23" class="active">SSH port</label>
+                      </div>
+                      <div class="md-form">
+                        <input placeholder="80" type="text" id="dash_port" class="form-control" >
+                        <label for="form23" class="active">Dashboard port</label>
+                        <button class="btn blue-gradient black-text" onclick="ports()">Save</button>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+            </div>
+
+          </div>
+          <!--Card -->
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-lg-6 col-md-6 mb-0">
+
+          <!--Card -->
+          <div class="card dark-card-admin card-cascade narrower">
+              <!-- Card image -->
+              <div class="view view-cascade gradient-card-header aqua-gradient">
+                <h5 class="mb-0 black-text">LTE MODULE</h5>
+              </div>
+            <!--Card content -->
+            <div class="card-body card-body-cascade">
+              <!-- Subscription form -->
+                <table class="table">
+                  <tbody>
+                  <tr>
+                    <td class="border-top-0">LTE only connection</td>
+                  </tr>
+                  <tr>
+                    <td class="border-top-0 text-center">
+                      <button class="btn blue-gradient black-text" onclick="commands('lte_only_activate')">Activate</button>
+                      <button class="btn purple-gradient black-text" onclick="commands('lte_only_deactivate')">Deactivate</button>
+                      <button class="btn dusty-grass-gradient black-text" onclick="status('lte_only_isactive')">Status</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>LTE Module</td>
+                  </tr>
+                  <tr>
+                    <td class="border-top-0">
+                        <div class="col-lg-12 mb-1">
+                          <fieldset class="form-check mb-4">
+                            <input class="form-check-input" name="group1" type="radio" id="module1" checked="checked">
+                            <label class="form-check-label" for="module1">Quectel Module</label>
+                          </fieldset>
+                          <fieldset class="form-check mb-4">
+                            <input class="form-check-input" name="group1" type="radio" id="module2">
+                            <label class="form-check-label" for="module2">SimCom Module</label>
+                          </fieldset>
+                        </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="border-top-0 text-center">
+                      <div class="md-form">
+                        <input placeholder="09121111111" type="number" id="sms_number" class="form-control" >
+                        <label for="form23" class="active">SMS Number</label>
+                      </div>
+                      <div class="md-form">
+                        <input placeholder="mtnirancell" type="text" id="sim_apn" class="form-control" >
+                        <label for="form23" class="active">SIM APN</label>
+                        <button class="btn blue-gradient black-text" onclick="lte()">Save</button>
+                      </div>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+            </div>
+
+          </div>
+          <!--Card -->
+
+        </div>
+        <!-- Grid column -->
+
+      <!-- Row end -->
+      </div>
+
+      <br/><br/>
+
+      <!--Grid row -->
+      <div class="row">
+
+
+        <!-- Grid column -->
+        <div class="col-lg-6 col-md-12 mb-0">
+          <!--Card -->
+          <div class="card dark-card-admin card-cascade narrower">
+              <!-- Card image -->
+              <div class="view view-cascade gradient-card-header rare-wind-gradient">
+                <h5 class="mb-0 black-text">SSH TUNNEL</h5>
+              </div>
+            <!--Card content -->
+            <div class="card-body card-body-cascade">
+
+              <!-- Subscription form -->
+                <table class="table">
+                  <tbody>
+                  <tr>
+                    <td class="border-top-0">SSH tunnel</td>
+                  </tr>
+                  <tr>
+                    <td class="border-top-0 text-center">
+                      <button class="btn blue-gradient black-text" onclick="commands('ssh_tunnel_activate')">Activate</button>
+                      <button class="btn purple-gradient black-text" onclick="commands('ssh_tunnel_deactivate')">Deactivate</button>
+                      <button class="btn dusty-grass-gradient black-text" onclick="status('ssh_tunnel_isactive')">Status</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="border-top-0 text-center">
+                      <div class="md-form">
+                        <input placeholder="0.0.0.0" type="text" id="ssh_tunnel_ip" class="form-control" >
+                        <label for="ssh_tunnel_ip" class="active">SSH Tunnel IP</label>
+                      </div>
+                      <div class="md-form">
+                        <input placeholder="0" type="number" id="ssh_tunnel_server_side_dash_port" class="form-control" >
+                        <label for="ssh_tunnel_server_side_dash_port" class="active">server side webpage Port</label>
+                      </div>
+                      <div class="md-form">
+                        <input placeholder="0" type="number" id="ssh_tunnel_server_side_ssh_port" class="form-control" >
+                        <label for="ssh_tunnel_server_side_ssh_port" class="active">server side ssh Port</label>
+                      </div>
+                      <div class="md-form">
+                        <input placeholder="00" type="number" id="ssh_tunnel_port" class="form-control" >
+                        <label for="ssh_tunnel_port" class="active">SSH connection Port</label>
+                        <button class="btn blue-gradient black-text" onclick="ssh_tunnel_save()">Save</button>
+                      </div>
+                    </td>
+                  </tr>
+                  
+  
+                  </tbody>
+                </table>
+            </div>
+
+          </div>
+          <!--Card -->
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-lg-6 col-md-6 mb-0">
+
+          <!--Card -->
+          <div class="card dark-card-admin card-cascade narrower">
+              <!-- Card image -->
+              <div class="view view-cascade gradient-card-header near-moon-gradient">
+                <h5 class="mb-0 black-text">FIRMWARE UPDATE</h5>
+              </div>
+            <!--Card content -->
+            <div class="card-body card-body-cascade">
+              <!-- Subscription form -->
+                <table class="table">
+                  <tbody>
+                  <tr>
+                    <td class="border-top-0">Firmware Update</td>
+                  </tr>
+                  <tr>
+                    <form id="uploadform" method="post" enctype="multipart/form-data">
+                    <td class="border-top-0 text-center padding-top-0" id="drag_drop">
+                      <div class="file-field">
+                        <a class="btn-floating morpheus-den-gradient mt-0 float-left">
+                          <i class="fas fa-paperclip" aria-hidden="true"></i>
+                          <input type="file" id="attach_button">
+                        </a>
+                        <div class="file-path-wrapper md-form">
+                          <input class="validate form-control" type="text" id="upload_the_firmware" placeholder="Upload The firmware">
+                        </div>
+                      </div>
+                      <button class="btn btn-outline-danger black-text" onclick="upload_firmware()">Upload & Update</button>
+                    </td>
+                    </form>
+                  </tr>
+                  </tbody>
+                </table>
+            </div>
+
+          </div>
+          <!--Card -->
+
+        </div>
+        <!-- Grid column -->
+        <!-- <div class="col-lg-1 col-md-6 mb-0"></div> -->
+
+      </div>
+
+      <!-- separator line -->
+      <!--<hr class="my-5"/>-->
+    <br/><br/><br/><br/>
+    </div>
+
+  </main>
+  <!-- Main layout -->
+
+  <!-- Footer -->
+  <footer class="dark-card-admin page-footer pt-0 mt-5">
+
+    <!-- Copyright -->
+    <div class="footer-copyright py-3 text-center">
+        © 2020 Copyright: <a href="https://atrovan.com/" target="_blank"> Atrovan.com </a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+
+
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script src="static/js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="static/js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="static/js/mdb.min.js"></script>
+  <!-- custom main.js -->
+  <script type="text/javascript" src="static/js/advanced.js"></script>
+  <!-- Initializations -->
+  <script>
+       // SideNav Initialization
+       $(".button-collapse").sideNav();
+
+       var container = document.querySelector('.custom-scrollbar');
+       var ps = new PerfectScrollbar(container, {
+           wheelSpeed: 2,
+           wheelPropagation: true,
+           minScrollbarLength: 20
+       });
+
+       // Data Picker Initialization
+       $('.datepicker').pickadate();
+
+       // Material Select Initialization
+       $(document).ready(function () {
+           $('.mdb-select').material_select();
+       });
+
+       // Tooltips Initialization
+       $(function () {
+           $('[data-toggle="tooltip"]').tooltip()
+       })
+  </script>
+
+   <!-- Charts -->
+   <script>
+       // Small chart
+       $(function () {
+           $('.min-chart#chart-sales').easyPieChart({
+               barColor: "#FF5252",
+               onStep: function (from, to, percent) {
+                   $(this.el).find('.percent').text(Math.round(percent));
+               }
+           });
+       });
+
+   </script>
+
+   <!-- dark theme activation -->
+   <script>
+           $( document ).ready(function() {
+               $('h6, .card, p, td, th, i, li a, h4, input, label').not(
+                   '#slide-out i, #slide-out a, .dropdown-item i, .dropdown-item').toggleClass('text-white');
+               $('.btn-dash').toggleClass('grey lime').toggleClass('lighten-3 darken-3');
+               $('.gradient-card-header').toggleClass('white black lighten-4');
+               $('.list-panel a').toggleClass('navy-blue-bg-a text-white').toggleClass('list-group-border');
+
+           });
+
+           $('.wow.fadeIn.hidden').toggleClass('hidden');
+           new WOW().init();
+   </script>
+
+    <!-- upload script -->
+  <script>
+          $('#attach_button').on('change',
+            function(e){
+              $("#upload_the_firmware")[0].value = $('#attach_button')[0].files[0].name
+              
+            })
+
+           $('#drag_drop').on(
+                'dragover',
+                function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            )
+
+            $('#drag_drop').on(
+                'dragenter',
+                function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            )
+
+            $('#drag_drop').on(
+            'drop',
+            function(e){
+                if(e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files.length) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log(e.originalEvent.dataTransfer.files);
+                    // $("#upload_the_firmware")[0].value = $('#attach_button')[0].files[0].name
+                }
+            }
+            );
+   </script>
+</body>
+
+</html>
