@@ -7,3 +7,7 @@
 ## how to use
 - run ```python3 main.py```
 
+
+
+<!-- ![img](dashboard.png) { width: 400px; } -->
+<img src="dashboard.png" alt="drawing" style="width:600pt;"/>
